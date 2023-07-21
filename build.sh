@@ -1,7 +1,7 @@
 #!/bin/bash
 
-IMAGE=jochenwierum/openjdk-minimal-jre
-skip=${1:-0}
+IMAGE=stefanpopp/openjdk-minimal-jre
+# skip=${1:-0}
 
 find_on_hub() {
 	tag="$1"
@@ -127,10 +127,10 @@ update_tags() {
 }
 
 while IFS=, read -r release adoptium checksum checksum_musl name tags; do
-    if [ $skip -gt 0 ]; then
-        skip=$(( skip - 1 ))
-        continue
-    fi
+    # if [ $skip -gt 0 ]; then
+    #     skip=$(( skip - 1 ))
+    #     continue
+    # fi
 
 	echo "=== $name ($release) ==="
 	hash=$(find_on_hub $name)
@@ -143,3 +143,5 @@ while IFS=, read -r release adoptium checksum checksum_musl name tags; do
 	fi
 	echo ""
 done < versions.csv
+
+echo "abc"
